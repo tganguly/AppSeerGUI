@@ -1,0 +1,209 @@
+<idea-plugin url="https://github.com/pbreault/adb-idea">
+    <id>com.developerphil.adbidea</id>
+    <name>ADB Idea</name>
+    <version>1.5.3</version>
+    <vendor url="http://www.developerphil.com">Philippe Breault</vendor>
+
+    <description><![CDATA[
+        Adds the following ADB commands to Android Studio and Intellij:<br />
+        <ul>
+            <li>ADB Uninstall App</li>
+            <li>ADB Kill App</li>
+            <li>ADB Start App</li>
+            <li>ADB Restart App</li>
+            <li>ADB Clear App Data</li>
+            <li>ADB Clear App Data and Restart</li>
+            <li>ADB Revoke Permissions</li>
+            <li>ADB Start App With Debugger</li>
+            <li>ADB Restart App With Debugger</li>
+        </ul>
+        <br />
+        There are two basic ways to invoke a command:
+        <ul>
+            <li>Through the Tools->Android->ADB Idea menu</li>
+            <li>By searching for "ADB" in "Find Actions" (osx: cmd+shift+a, windows/linux: ctrl+shift+a)</li>
+        </ul>
+        ]]></description>
+
+
+    <change-notes><![CDATA[
+        <b>1.5.3</b>
+        <ul>
+          <li>BUGFIX: Show all connected devices on Android Studio 3.4+</li>
+        </ul>
+        <b>1.5.2</b>
+        <ul>
+          <li>BUGFIX: Show the name of the devices in addition to the serial number when multiple devices are connected</li>
+        </ul>
+        <b>1.5.1</b>
+        <ul>
+          <li>BUGFIX: Support Android Studio 3.2 Preview1</li>
+        </ul>
+        <b>1.5.0</b>
+        <ul>
+          <li>FEATURE: Revoke Runtime Permissions</li>
+          <li>BUGFIX: Support apps using string templating in the applicationId in the gradle build file</li>
+          <li>BUGFIX: Show an appropriate error message instead of crashing when gradle is syncing
+        </ul>
+        <b>1.4.1</b>
+        <ul>
+          <li>BUGFIX: No Device </li>
+        </ul>
+        <b>1.4.0</b>
+        <ul>
+          <li>FEATURE: Restart the app and attach the debugger</li>
+        </ul>
+        <b>1.3.0</b>
+        <ul>
+            <li>FEATURE: Checkbox to reuse the same devices for the current session</li>
+            <li>FEATURE: Only show notifications for errors</li>
+        </ul>
+        <b>1.2.8</b>
+        <ul>
+            <li>BUGFIX: NoSuchMethodException on Android Studio 2.2 Preview</li>
+        </ul>
+        <b>1.2.7</b>
+        <ul>
+            <li>BUGFIX: Can't start or restart on Android Studio 2.1 Preview</li>
+        </ul>
+        <b>1.2.6</b>
+        <ul>
+            <li>BUGFIX: NoSuchMethodException on Android Studio 2.0 Preview 8</li>
+        </ul>
+        <b>1.2.5</b>
+        <ul>
+            <li>BUGFIX: NoSuchMethodException on Android Studio 2.0 Preview 5</li>
+        </ul>
+        <b>1.2.4</b>
+        <ul>
+            <li>BUGFIX: NoSuchMethodError on Android Studio 2.0 Preview 1</li>
+        </ul>
+        <b>1.2.3</b>
+        <ul>
+            <li>BUGFIX: NoSuchMethodError on Android Studio 1.5</li>
+        </ul>
+        <b>1.2.2</b>
+        <ul>
+            <li>BUGFIX: Doesn't work on Android Studio 1.4 with multiple devices attached</li>
+        </ul>
+        <b>1.2.1</b>
+        <ul>
+            <li>BUGFIX: Can't start or restart app in Android Studio 1.4</li>
+        </ul>
+        <b>1.2.0</b>
+        <ul>
+            <li>FEATURE: New "ADB Operations Popup...". Windows: Ctrl+Alt+Shift+A  -  Mac OSX: Ctrl+Shift+A</li>
+        </ul>
+        <b>1.1.4</b>
+        <ul>
+            <li>BUGFIX: Start & Restart is broken when the activity is merged in the manifest.</li>
+        </ul>
+        <b>1.1.3</b>
+        <ul>
+            <li>BUGFIX: Fixed crash in Android Studio 0.8.10</li>
+        </ul>
+        <b>1.1.2</b>
+        <ul>
+            <li>BUGFIX: Fixed device chooser in Android Studio 0.6+</li>
+        </ul>
+        <b>1.1.1</b>
+        <ul>
+            <li>BUGFIX: Fixed crash in Android Studio 0.4.4</li>
+            <li>BUGFIX: Don't show test projects in the module selection dialog</li>
+        </ul>
+        <b>1.1.0</b>
+        <ul>
+            <li>Now support Build-Types and flavors in Gradle projects</li>
+            <li>Now support projects with more than one application module</li>
+        </ul>
+        ]]>
+    </change-notes>
+
+    <!-- Android Studio 3.3+ -->
+    <!-- see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html -->
+    <idea-version since-build="182"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <actions>
+        <group id="AdbIdea" text="_ADB Idea" description="ADB Idea" popup="true">
+            <action id="com.developerphil.adbidea.action.AdbIdeaQuickList"
+                    class="com.developerphil.adbidea.action.QuickListAction" text="ADB Operations Popup..."
+                    description="List all the adb idea operations in a popup">
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>
+                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
+            </action>
+            <separator/>
+
+            <action id="com.developerphil.adbidea.action.RevokePermissionsAction"
+                    class="com.developerphil.adbidea.action.RevokePermissionsAction"
+                    text="ADB Revoke Permissions"
+                    description="Revoking the runtime permissions of the current application">
+            </action>
+
+            <action id="com.developerphil.adbidea.action.RevokePermissionsAndRestartAction"
+                    class="com.developerphil.adbidea.action.RevokePermissionsAndRestartAction"
+                    text="ADB Revoke Permissions and Restart"
+                    description="Revoking the runtime permissions of the current application and restarts it">
+            </action>
+
+            <action id="com.developerphil.adbidea.action.GrantPermissionsAction"
+                    class="com.developerphil.adbidea.action.GrantPermissionsAction"
+                    text="ADB Grant Permissions"
+                    description="Granting the runtime permissions of the current application">
+            </action>
+
+            <action id="com.developerphil.adbidea.action.UninstallAction"
+                    class="com.developerphil.adbidea.action.UninstallAction"
+                    text="ADB Uninstall App"
+                    description="Uninstalls the current application">
+            </action>
+
+            <action id="com.developerphil.adbidea.action.KillAction"
+                    class="com.developerphil.adbidea.action.KillAction"
+                    text="ADB Kill App"
+                    description="Kills the current application">
+            </action>
+            <action id="com.developerphil.adbidea.action.StartAction"
+                    class="com.developerphil.adbidea.action.StartAction"
+                    text="ADB Start App"
+                    description="Starts the current application">
+            </action>
+            <action id="com.developerphil.adbidea.action.RestartAction"
+                    class="com.developerphil.adbidea.action.RestartAction"
+                    text="ADB Restart App"
+                    description="Restarts the current application">
+            </action>
+            <action id="com.developerphil.adbidea.action.ClearDataAction"
+                    class="com.developerphil.adbidea.action.ClearDataAction"
+                    text="ADB Clear App Data"
+                    description="Clears the private storage of the app">
+            </action>
+            <action id="com.developerphil.adbidea.action.ClearDataAndRestartAction"
+                    class="com.developerphil.adbidea.action.ClearDataAndRestartAction"
+                    text="ADB Clear App Data and Restart"
+                    description="Clears the private storage of the app and restarts it">
+            </action>
+            <action id="com.developerphil.adbidea.action.StartWithDebuggerAction"
+                    class="com.developerphil.adbidea.action.StartWithDebuggerAction"
+                    text="ADB Start App With Debugger"
+                    description="Starts the current application and attach the debugger">
+            </action>
+
+            <action id="com.developerphil.adbidea.action.RestartWithDebuggerAction"
+                    class="com.developerphil.adbidea.action.RestartWithDebuggerAction"
+                    text="ADB Restart App With Debugger"
+                    description="Restarts the current application and attach the debugger">
+            </action>
+            <add-to-group group-id="AndroidToolsGroup" anchor="first"/>
+        </group>
+    </actions>
+
+    <project-components>
+        <component>
+            <implementation-class>com.developerphil.adbidea.ObjectGraph</implementation-class>
+        </component>
+    </project-components>
+</idea-plugin>
