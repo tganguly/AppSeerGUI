@@ -1,0 +1,1 @@
+Usage: java -cp classPath appseer.AppSeerDemo appName SDK_ROOT ANDROID_ROOT OUTPUT_DIR JADX_OUT
