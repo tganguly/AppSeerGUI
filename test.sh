@@ -1,6 +1,7 @@
 #!/bin/bash
 A="Skip APK Decompilation"
 B="Skip Analysis"  
+(sleep 1 && wmctrl -F -a "I am on top" -b add,above) &
 response=$(zenity --height=250 --list --checklist \
    --title='Selection' --column=Boxes --column=Selections \
    TRUE "$A"  TRUE "$B" TRUE C --separator=':')

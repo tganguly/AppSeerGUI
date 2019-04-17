@@ -17,7 +17,8 @@ while true; do
   
   case $rc in
   0)
-  sh my_script2.sh;
+  rm config2.cfg;
+  sh fc_test.sh;
   echo configuring...;;
   esac
 
@@ -25,7 +26,8 @@ while true; do
   Configure) echo configuring....;;
   Compile) echo compiling....;
   mkdir ${TOOL_BIN}
-  javac -d ${TOOL_BIN} ${TOOL_SRC}/*.java;;
+  javac -d ${TOOL_BIN} ${TOOL_SRC}/*.java;
+  sh my_script_analysis.sh;;
   Clean) echo cleaning....;
          rm -rf ${TOOL_BIN}
          rm -rf ${CONFIG};;

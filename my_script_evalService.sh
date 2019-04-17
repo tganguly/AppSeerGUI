@@ -8,15 +8,17 @@ FALSE "First 'n' services" \
 FALSE "Particular Service")
 
 echo $ans
+apk_name="$(zenity --entry --text "Apk_name to evaluate services" --entry-text "Apk_name" )"
+
 case $ans in
 First*)
 # text input prompt
 first_n="$(zenity --entry --text "How many services you want to evaluate?" --entry-text 1 )"
 if zenity --question --text="Do you want to check for false negative checks?"
 then
-    echo "evaluateServices.sh -f -n first_n apk_name"
+    sh evaluateServices.sh -f -n first_n apk_name
 else
-    echo "evaluateServices.sh -n first_n apk_name"
+    sh evaluateServices.sh -n first_n apk_name
 
 fi
     echo $first_n;;
@@ -26,9 +28,9 @@ Particular*)
 pos_n="$(zenity --entry --text "Which service you want to evaluate?" --entry-text "1" )"
 if zenity --question --text="Do you want to check for false negative checks?"
 then
-echo "evaluateServices.sh -f -o pos_n apk_name"
+	sh evaluateServices.sh -f -o pos_n apk_name
 else
-echo "evaluateServices.sh -o pos_n apk_name"
+	sh evaluateServices.sh -o pos_n apk_name
 
 fi
     echo $pos_n;;
