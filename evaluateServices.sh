@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo $*;
 ######## Given an app name, retrieve its vulnerable.txt or safe.txt text file organized as:
 
 ######1: packagename
@@ -22,7 +22,7 @@ if [ ! -f $CONFIG ];
 	echo "Error: config.cfg not found. Run: $ make config"
 	exit
 fi
-source config.cfg
+. ./config.cfg
 
 #Script constants
 ADB_LOG_CLEAR_CMD=" logcat -b crash -c"

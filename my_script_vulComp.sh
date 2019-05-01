@@ -2,10 +2,6 @@
 set -x
 A="Skip APK Decompilation"
 B="Skip Analysis"  
-response=$(zenity --height=250 --list --checklist \
-   --title='Selection' --column=Boxes --column=Selections \
-   TRUE "$A"  TRUE "$B" TRUE C --separator=':')
-echo $response
 response=$(zenity --list \
 --title="Choose vulnerability Options" \
 --text "Choose correct option" \
@@ -34,13 +30,13 @@ fi
    case $response in
       "$A")
 	#-d
-	sh vulnerableComponents.sh -d apk_path apk_name; 
+	./vulnerableComponents.sh -d $apk_path $apk_name; 
         echo Item A ;;
       "$B")
 	#-a
-	sh vulnerableComponents.sh -a apk_path apk_name; 
+	./vulnerableComponents.sh -a $apk_path $apk_name; 
 	echo Item B ;;
      # C) echo Item C ;;
    esac
-done
+
 

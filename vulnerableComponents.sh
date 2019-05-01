@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo -------------------------------------;
+echo $*;
+echo $apk_path;
 ######## Given an apk file and the name of the app, retrieve vulnerable
 ######## services according to the onStartCommand -> startForeground pattern.
 ######## Options: 
@@ -14,7 +17,7 @@ if [ ! -f $CONFIG ];
 	echo "Error: config.cfg not found. Run: $ make config"
 	exit
 fi
-source config.cfg
+. ./config.cfg
 
 #Script constants
 NO_DECOMPILE="-d"
@@ -94,6 +97,8 @@ elif [ $# -eq 4 ];
 fi
 
 second_last=$(( $#-1 ))
+echo secondlast ${!second_last};
+
 app_name=${!#}
 apk_source=${!second_last}
 
