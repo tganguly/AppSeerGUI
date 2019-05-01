@@ -1,7 +1,7 @@
 TOOL=../AppSeer
 TOOL_BIN=${TOOL}/bin
 TOOL_SRC=${TOOL}/src/appseer
-CONFIG=config2.cfg
+CONFIG=config.cfg
 
 
 
@@ -17,13 +17,13 @@ while true; do
   
   case $rc in
   0)
-  rm config2.cfg;
+  rm config.cfg;
   sh fc_test.sh;
   echo configuring...;;
   esac
 
   case $ans in
-  Configure) echo configuring....;;
+ 
   Compile) echo compiling....;
   mkdir ${TOOL_BIN}
   javac -d ${TOOL_BIN} ${TOOL_SRC}/*.java;
