@@ -18,7 +18,7 @@ while true; do
   case $rc in
   0)
   rm config.cfg;
-  sh updateConfig.sh;
+  sh fc_test.sh;
   echo configuring...;;
   esac
 
