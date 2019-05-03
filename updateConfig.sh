@@ -1,12 +1,22 @@
 #!/bin/bash
+
+echo OUTPUT DIRECTORY PATH
+
 OUTPUT_DIR=$(zenity --file-selection --directory --title="Choose the location for OUTPUT_DIR:" --filename=$HOME/Desktop/)
-echo $OUTPUT_DIR
+
+echo JADX DIRECTORY PATH
 
 JADX_DIR=$(zenity --file-selection --directory --title="Choose the location for JADX_DIR:" --filename=$HOME/Desktop/)
+
+echo JADX_OUT
 JADX_OUT=$(zenity --file-selection --directory --title="Choose Enter the location for JADX_OUT" --filename=$HOME/Desktop/)
+echo APKTOOL DIRECTORY
 APKTOOL_DIR=$(zenity --file-selection --directory --title="Choose the location for APKTOOL_DIR" --filename=$HOME/Desktop/)
+echo ADB DIRECTORY
 ADB_DIR=$(zenity --file-selection --title="Choose  the location for ADB_DIR" --filename=$HOME/Desktop/)
+echo SDK ROOT PATH
 SDK_ROOT=$(zenity --file-selection --directory --title="Choose the location for SDK_ROOT" --filename=$HOME/Desktop/)
+echo ANDROID ROOT PATH
 ANDROID_ROOT=$(zenity --file-selection --directory --title="Choosethe location for ANDROID_ROOT" --filename=$HOME/Desktop/)
 if [ "$OUTPUT_DIR" ]; then
 
